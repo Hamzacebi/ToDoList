@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Managers", "Managers", "{33FF004D-E454-48AC-A554-6F667B6C12AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{D1A3D2F6-BC5C-43C0-8082-4F024078D2A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{332DBFDE-8683-4781-935B-0B5F8081ACB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{749B3177-0E7E-4BBB-99F5-B820A5A898CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{045C42F1-CC27-4B08-926D-FE392A3E2EC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{02BC80D2-8CA0-4C94-9A6A-8A30D7E12D41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6F1DCDF2-E11C-4FD3-8DA0-597CCDB0AC4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.XUnitTestForToDoList", "Tests.XUnitTestForToDoList\Tests.XUnitTestForToDoList.csproj", "{BC41EEC6-F487-4222-9433-EC99241CDBAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commons.CommonOfToDoList", "Commons.CommonOfToDoList\Commons.CommonOfToDoList.csproj", "{E6A76BAB-FECE-4B9D-A058-765532B9AB00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers.HelperOfToDoList", "Helpers.HelperOfToDoList\Helpers.HelperOfToDoList.csproj", "{981EFDDB-068F-4F02-AF8C-459C539EDE23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntitiesOfProjects", "EntitiesOfProjects", "{178FE8F7-56C4-442B-8A74-F2EFBDB80BE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OtherModels", "OtherModels", "{D5ED9157-082F-449B-AD0D-8B3B34CEEB29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.OtherModels.NeccesaryModelsOfToDoList", "Models.OtherModels.NeccesaryModelsOfToDoList\Models.OtherModels.NeccesaryModelsOfToDoList.csproj", "{4E120B2A-6B8E-486D-B601-27090CCF5E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.EntitiesOfProjects.EntitiesOfToDoList", "Models.EntitiesOfProjects.EntitiesOfToDoList\Models.EntitiesOfProjects.EntitiesOfToDoList.csproj", "{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.WebAPIOfToDoList", "Services.WebAPIOfToDoList\Services.WebAPIOfToDoList.csproj", "{B45987E5-D398-45E6-875B-F585B389B12C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managers.ManagerOfToDoList", "Managers.ManagerOfToDoList\Managers.ManagerOfToDoList.csproj", "{923B42E3-54FE-48E8-9A67-2FEB15FD4236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.DataAccessOfToDoList", "DataAccess.DataAccessOfToDoList\DataAccess.DataAccessOfToDoList.csproj", "{D24D8508-51D7-4301-8781-90ED9FFEE2A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC41EEC6-F487-4222-9433-EC99241CDBAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC41EEC6-F487-4222-9433-EC99241CDBAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC41EEC6-F487-4222-9433-EC99241CDBAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC41EEC6-F487-4222-9433-EC99241CDBAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6A76BAB-FECE-4B9D-A058-765532B9AB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6A76BAB-FECE-4B9D-A058-765532B9AB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6A76BAB-FECE-4B9D-A058-765532B9AB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6A76BAB-FECE-4B9D-A058-765532B9AB00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{981EFDDB-068F-4F02-AF8C-459C539EDE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981EFDDB-068F-4F02-AF8C-459C539EDE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{981EFDDB-068F-4F02-AF8C-459C539EDE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{981EFDDB-068F-4F02-AF8C-459C539EDE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E120B2A-6B8E-486D-B601-27090CCF5E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E120B2A-6B8E-486D-B601-27090CCF5E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E120B2A-6B8E-486D-B601-27090CCF5E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E120B2A-6B8E-486D-B601-27090CCF5E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45987E5-D398-45E6-875B-F585B389B12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45987E5-D398-45E6-875B-F585B389B12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45987E5-D398-45E6-875B-F585B389B12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45987E5-D398-45E6-875B-F585B389B12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{923B42E3-54FE-48E8-9A67-2FEB15FD4236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{923B42E3-54FE-48E8-9A67-2FEB15FD4236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{923B42E3-54FE-48E8-9A67-2FEB15FD4236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{923B42E3-54FE-48E8-9A67-2FEB15FD4236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D24D8508-51D7-4301-8781-90ED9FFEE2A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D24D8508-51D7-4301-8781-90ED9FFEE2A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D24D8508-51D7-4301-8781-90ED9FFEE2A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D24D8508-51D7-4301-8781-90ED9FFEE2A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC41EEC6-F487-4222-9433-EC99241CDBAF} = {6F1DCDF2-E11C-4FD3-8DA0-597CCDB0AC4F}
+		{E6A76BAB-FECE-4B9D-A058-765532B9AB00} = {02BC80D2-8CA0-4C94-9A6A-8A30D7E12D41}
+		{981EFDDB-068F-4F02-AF8C-459C539EDE23} = {749B3177-0E7E-4BBB-99F5-B820A5A898CE}
+		{178FE8F7-56C4-442B-8A74-F2EFBDB80BE6} = {332DBFDE-8683-4781-935B-0B5F8081ACB4}
+		{D5ED9157-082F-449B-AD0D-8B3B34CEEB29} = {332DBFDE-8683-4781-935B-0B5F8081ACB4}
+		{4E120B2A-6B8E-486D-B601-27090CCF5E9C} = {D5ED9157-082F-449B-AD0D-8B3B34CEEB29}
+		{9C1F3C1E-BE64-41AB-9ABE-45442CB9B4E9} = {178FE8F7-56C4-442B-8A74-F2EFBDB80BE6}
+		{B45987E5-D398-45E6-875B-F585B389B12C} = {045C42F1-CC27-4B08-926D-FE392A3E2EC0}
+		{923B42E3-54FE-48E8-9A67-2FEB15FD4236} = {33FF004D-E454-48AC-A554-6F667B6C12AF}
+		{D24D8508-51D7-4301-8781-90ED9FFEE2A6} = {D1A3D2F6-BC5C-43C0-8082-4F024078D2A3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE48778B-A02B-48DB-8FEE-C9BCB3F91B3E}
+	EndGlobalSection
+EndGlobal
