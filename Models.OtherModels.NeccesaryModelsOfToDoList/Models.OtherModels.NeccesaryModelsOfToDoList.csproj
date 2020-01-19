@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ModelsOfDataTransferObject\" />
     <Folder Include="ModelsOfWebAPI\" />
   </ItemGroup>
 
