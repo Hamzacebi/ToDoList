@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Commons.CommonOfToDoList\Commons.CommonOfToDoList.csproj" />
     <ProjectReference Include="..\Helpers.HelperOfToDoList\Helpers.HelperOfToDoList.csproj" />
     <ProjectReference Include="..\Models.EntitiesOfProjects.EntitiesOfToDoList\Models.EntitiesOfProjects.EntitiesOfToDoList.csproj" />
   </ItemGroup>
