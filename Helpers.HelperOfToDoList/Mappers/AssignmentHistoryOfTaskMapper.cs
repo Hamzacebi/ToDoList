@@ -27,7 +27,7 @@ namespace Helpers.HelperOfToDoList.Mappers
                     Id = entityObject.Id,
                     ToDoId = entityObject.ToDoId,
                     UserId = entityObject.UserId,
-                    ProcessType = entityObject.ProcessType,
+                    ProcessType = entityObject.ProcessType, 
                     ReleaseDate = entityObject.ReleaseDate,
                     DateToAccepted = entityObject.DateToAccepted
                 };
@@ -45,7 +45,7 @@ namespace Helpers.HelperOfToDoList.Mappers
                     Id = item.Id,
                     UserId = item.UserId,
                     ToDoId = item.ToDoId,
-                    ReleaseDate = item.ReleaseDate,
+                    ReleaseDate = item.ReleaseDate, 
                     ProcessType = item.ProcessType,
                     DateToAccepted = item.DateToAccepted
                 });
@@ -59,12 +59,12 @@ namespace Helpers.HelperOfToDoList.Mappers
             {
                 return new AssignmentHistoryOfTasks
                 {
+                    Id = dtoObject.Id,
                     UserId = dtoObject.UserId,
                     ToDoId = dtoObject.ToDoId,
                     ReleaseDate = dtoObject.ReleaseDate,
-                    DateToAccepted = dtoObject.DateToAccepted,
-                    Id = dtoObject.Id,
-                    ProcessType = dtoObject.ProcessType
+                    ProcessType = dtoObject.ProcessType,
+                    DateToAccepted = dtoObject.DateToAccepted
                 };
             }
             return null;
