@@ -9,4 +9,8 @@
     <Folder Include="Concretes\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SinanHamzaceBi.GenericRepository.Concretes" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>
