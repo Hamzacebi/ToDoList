@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappers\Base\" />
     <Folder Include="Tools\" />
   </ItemGroup>
 
