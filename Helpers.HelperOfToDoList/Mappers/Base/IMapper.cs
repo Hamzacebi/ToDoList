@@ -20,6 +20,7 @@ namespace Helpers.HelperOfToDoList.Mappers.Base
         /// <returns></returns>
         TDTO MapToDTO(TEntity entityObject);
 
+        //ToDo: List yerine IEnumerable yazilabilir. Managerde foreach icerisinde donulmeye gore degisir bu durum
         /// <summary>
         /// Verilen Entity nesnesine ait listeyi DTO nesnesine ait liste olarak veren fonksiyon
         /// </summary>

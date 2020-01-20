@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Commons.CommonOfToDoList\Commons.CommonOfToDoList.csproj" />
+    <ProjectReference Include="..\Models.EntitiesOfProjects.EntitiesOfToDoList\Models.EntitiesOfProjects.EntitiesOfToDoList.csproj" />
     <ProjectReference Include="..\Models.OtherModels.NeccesaryModelsOfToDoList\Models.OtherModels.NeccesaryModelsOfToDoList.csproj" />
   </ItemGroup>
 
