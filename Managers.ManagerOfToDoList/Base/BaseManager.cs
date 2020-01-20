@@ -1,12 +1,11 @@
 ﻿using System;
 
-#region Global Usings
-using Microsoft.EntityFrameworkCore;
-using Commons.CommonOfToDoList.Constants;
+#region Global Usings 
 using Helpers.HelperOfToDoList.Mappers;
 using Helpers.HelperOfToDoList.Mappers.Base;
 using DataAccess.DataAccessOfToDoList.Abstracts.UnitOfWork;
 using DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork;
+using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseContext;
 using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseEntities;
 using Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfDataTransferObject;
 #endregion Global Usings
@@ -18,7 +17,6 @@ namespace Managers.ManagerOfToDoList.Base
         #region Global Properties
 
         private IUnitOfWork unitOfWork;
-        private readonly DbContext DbContext;
 
         private readonly object lockObjectForUnitOfWork;
         private readonly object lockObjectForUserMapper;
@@ -35,10 +33,8 @@ namespace Managers.ManagerOfToDoList.Base
 
         #region Constructor(s)
 
-        protected BaseManager(DbContext dbContext)
+        protected BaseManager()
         {
-            this.DbContext = dbContext ?? throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
-                                                                          innerException: null);
             this.lockObjectForUnitOfWork =
             this.lockObjectForUserMapper =
             this.lockObjectForCategoryMapper =
@@ -60,7 +56,7 @@ namespace Managers.ManagerOfToDoList.Base
                     {
                         if (this.unitOfWork == null)
                         {
-                            this.unitOfWork = new UnitOfWork(dbContext: this.DbContext);
+                            this.unitOfWork = new UnitOfWork(dbContext: new ToDoListDbContext());
                         }
                     }
                 }
