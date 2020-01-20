@@ -16,7 +16,7 @@ namespace Helpers.HelperOfToDoList.Mappers
     /// <summary>
     /// Categories tablosu icin Entity'nin DTO'ya, DTO'nun Entity'e donusmesini saglayan class
     /// </summary>
-    public class CategoryMappers : IMapper<Categories, DTOOfCategory>
+    public class CategoryMapper : IMapper<Categories, DTOOfCategory>
     {
 
         DTOOfCategory IMapper<Categories, DTOOfCategory>.MapToDTO(Categories entityObject)
