@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Concretes\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Commons.CommonOfToDoList\Commons.CommonOfToDoList.csproj" />
     <ProjectReference Include="..\DataAccess.DataAccessOfToDoList\DataAccess.DataAccessOfToDoList.csproj" />
     <ProjectReference Include="..\Helpers.HelperOfToDoList\Helpers.HelperOfToDoList.csproj" />
