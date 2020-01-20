@@ -18,10 +18,12 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities
     {
         private bool disposedValue;
 
-        public RepositoryOfThingToDo(DbContext dbContext) : base(dbContext)
+        public RepositoryOfThingToDo(DbContext dbContext, Type inWhichDbContext) : base(dbContext, inWhichDbContext)
         {
             this.disposedValue = default(bool);
         }
+
+
 
         #region IDisposable Support
 

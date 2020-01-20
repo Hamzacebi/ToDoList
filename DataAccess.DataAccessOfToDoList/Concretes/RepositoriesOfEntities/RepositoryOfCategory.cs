@@ -18,10 +18,12 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities
     {
         private bool disposedValue;
 
-        public RepositoryOfCategory(DbContext dbContext) : base(dbContext)
+        public RepositoryOfCategory(DbContext dbContext, Type inWhichDbContext) : base(dbContext, inWhichDbContext)
         {
             this.disposedValue = default(bool);
         }
+
+
 
         #region IDisposable Support
 

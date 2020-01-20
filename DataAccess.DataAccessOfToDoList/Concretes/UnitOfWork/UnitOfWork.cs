@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Commons.CommonOfToDoList.Constants;
 using Helpers.HelperOfToDoList.Extensions;
+using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseContext;
 #endregion Global Usings
 
 namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
@@ -140,7 +141,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfUser == null)
                         {
-                            this.repositoryOfUser = new RepositoryOfUser(this.DbContet);
+                            this.repositoryOfUser = new RepositoryOfUser(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -158,7 +159,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfCategory == null)
                         {
-                            this.repositoryOfCategory = new RepositoryOfCategory(this.DbContet);
+                            this.repositoryOfCategory = new RepositoryOfCategory(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -176,7 +177,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfThingToDo == null)
                         {
-                            this.repositoryOfThingToDo = new RepositoryOfThingToDo(this.DbContet);
+                            this.repositoryOfThingToDo = new RepositoryOfThingToDo(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -194,13 +195,14 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryAssignmentHistoryOfTask == null)
                         {
-                            this.repositoryAssignmentHistoryOfTask = new RepositoryAssignmentHistoryOfTask(this.DbContet);
+                            this.repositoryAssignmentHistoryOfTask = new RepositoryAssignmentHistoryOfTask(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
                 return this.repositoryAssignmentHistoryOfTask;
             }
         }
+
         #endregion Repositories Properties
     }
 }

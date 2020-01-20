@@ -18,10 +18,11 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities
     {
         private bool disposedValue;
 
-        public RepositoryAssignmentHistoryOfTask(DbContext dbContext) : base(dbContext)
+        public RepositoryAssignmentHistoryOfTask(DbContext dbContext, Type inWhichDbContext) : base(dbContext, inWhichDbContext)
         {
             this.disposedValue = default(bool);
         }
+
 
         #region IDisposable Support
 

@@ -1,9 +1,8 @@
 ﻿using System;
 
 #region Global Usings
-using Commons.CommonOfToDoList.Constants;
 using Microsoft.EntityFrameworkCore;
-using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseContext;
+using Commons.CommonOfToDoList.Constants;
 using SinanHamzaceBi.GenericRepository.Concretes.RepositoryOfBasics;
 #endregion Global Usings
 
@@ -11,7 +10,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities.Base
 {
     public abstract class BaseForEntitiesOfToDoList<T> : RepositoryBase<T> where T : class
     {
-        protected BaseForEntitiesOfToDoList(DbContext dbContext) : base(dbContext)
+        protected BaseForEntitiesOfToDoList(DbContext dbContext, Type inWhichDbContext) : base(dbContext)
         {
             if (dbContext == null)
             {
@@ -19,7 +18,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities.Base
                                                 innerException: null);
             }
 
-            if (typeof(ToDoListDbContext) != dbContext.GetType())
+            if (inWhichDbContext != dbContext.GetType())
             {
                 throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForToDoListDbContext,
                                                 innerException: null);
