@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Managers.ManagerOfToDoList.Abstracts
 {
-    interface IManagerOfThingToDo
+    public interface IManagerOfThingToDo
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Managers.ManagerOfToDoList.Abstracts
 {
-    interface IManagerOfCategory
+    public interface IManagerOfCategory
     {
     }
 }
