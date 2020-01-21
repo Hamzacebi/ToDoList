@@ -90,8 +90,11 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     catchAndDo: (Exception exception) => throw exception
                 );
             }
-            throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
+            else
+            {
+                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
                                             innerException: null);
+            }
         }
 
         void IUnitOfWork.CommitTransaction()
@@ -105,11 +108,14 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                             this.DbContextTransaction.Rollback();
                             throw exception;
                         },
-                        finallyDo: () => this.DbContextTransaction.Dispose()
+                        finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContet.Dispose(); }
                     );
             }
-            throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
+            else
+            {
+                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
                                             innerException: null);
+            }
         }
 
         void IUnitOfWork.RollbackTransaction()
@@ -123,11 +129,14 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                        this.DbContextTransaction.Rollback();
                        throw exception;
                    },
-                   finallyDo: () => this.DbContextTransaction.Dispose()
+                   finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContet.Dispose(); }
                );
             }
-            throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
-                                            innerException: null);
+            else
+            {
+                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
+                                           innerException: null);
+            }
         }
 
         #endregion Transaction Functions
@@ -217,11 +226,6 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             {
                 if (disposing)
                 {
-                    this.repositoryOfUser.Dispose();
-                    this.repositoryOfCategory.Dispose();
-                    this.repositoryOfThingToDo.Dispose();
-                    this.repositoryAssignmentHistoryOfTask.Dispose();
-
                     this.DbContextTransaction.Dispose();
                     this.DbContet.Dispose();
                 }
