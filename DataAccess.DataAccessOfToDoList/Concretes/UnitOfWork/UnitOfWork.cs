@@ -23,6 +23,8 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
     {
         #region Global Properties
 
+        private bool disposedValue;
+
         private readonly DbContext DbContet;
         private IDbContextTransaction DbContextTransaction;
 
@@ -47,6 +49,8 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                                                                          innerException: null);
 
             //DbContext nesnesi bos degilse islemler yapilsin
+            this.disposedValue = default(bool);
+
             this.lockObjectForRepositoryOfUser = new object();
             this.lockObjectForRepositoryOfCategory = new object();
             this.lockObjectForRepositoryOfThingToDo = new object();
@@ -202,7 +206,34 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                 return this.repositoryAssignmentHistoryOfTask;
             }
         }
-
         #endregion Repositories Properties
+
+
+        #region IDisposable Support
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    this.repositoryOfUser.Dispose();
+                    this.repositoryOfCategory.Dispose();
+                    this.repositoryOfThingToDo.Dispose();
+                    this.repositoryAssignmentHistoryOfTask.Dispose();
+
+                    this.DbContextTransaction.Dispose();
+                    this.DbContet.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        void IDisposable.Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion  IDisposable Support
     }
 }

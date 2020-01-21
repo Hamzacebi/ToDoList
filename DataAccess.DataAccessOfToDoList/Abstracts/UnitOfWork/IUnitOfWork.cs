@@ -13,7 +13,7 @@ namespace DataAccess.DataAccessOfToDoList.Abstracts.UnitOfWork
     /// <summary>
     /// Repository Interfacelerine, Database Transaction fonksiyonlarina ve SaveChanges fonksiyon / fonksiyonlarina ulasmayi saglayan Interface
     /// </summary>
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         #region SaveChanges Function
 
