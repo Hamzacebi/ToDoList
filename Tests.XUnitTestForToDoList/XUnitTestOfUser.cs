@@ -6,6 +6,7 @@ using Xunit;
 #region Global Usings
 using Managers.ManagerOfToDoList.Abstracts;
 using Managers.ManagerOfToDoList.Concretes;
+using Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIModelsOfUser;
 #endregion Global Usings
 
 namespace Tests.XUnitTestForToDoList
@@ -21,9 +22,15 @@ namespace Tests.XUnitTestForToDoList
 
 
         [Fact]
-        public void Hamsi()
+        public void CreateNewUser()
         {
-
+            Assert.True(condition: this.userManager.CreateNewUser(new WebAPIModelOfInsertUser
+            {
+                UserEmail = "email@email.com",
+                UserName = "First User",
+                UserPassword = "Password",
+                UserSurname = "First Surname"
+            }));
         }
     }
 }
