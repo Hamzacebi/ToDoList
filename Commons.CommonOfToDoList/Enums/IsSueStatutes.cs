@@ -8,10 +8,7 @@ namespace Commons.CommonOfToDoList.Enums
     /// Herhangi bir To Do icin islem turleri
     /// </summary>
     public enum IsSueStatutes
-    {
-        //ToDo :  beklemede islem tipini buraya koy
-        //https://confluence.atlassian.com/adminjiracloud/issue-statuses-priorities-and-resolutions-973500867.html
-
+    { 
         /// <summary>
         /// Acildi ve beklemede
         /// </summary>
