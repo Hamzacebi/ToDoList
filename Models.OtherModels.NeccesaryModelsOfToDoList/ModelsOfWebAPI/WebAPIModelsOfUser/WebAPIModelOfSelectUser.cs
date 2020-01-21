@@ -5,5 +5,6 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
     public class WebAPIModelOfSelectUser : BaseUserWebAPIModel
     {
         public Guid UserId { get; set; }
+        public bool UserStatus { get; set; }
     }
 }

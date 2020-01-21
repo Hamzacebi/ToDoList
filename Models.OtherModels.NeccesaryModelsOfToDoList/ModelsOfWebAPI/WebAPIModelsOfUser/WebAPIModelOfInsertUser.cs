@@ -5,11 +5,7 @@ using System.Text;
 namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIModelsOfUser
 {
 
-    public class WebAPIModelsOfInsertUser : BaseUserWebAPIModel
+    public class WebAPIModelOfInsertUser : BaseUserWebAPIModel
     {
-        public WebAPIModelsOfInsertUser()
-        {
-            this.UserStatus = true;
-        }
     }
 }
