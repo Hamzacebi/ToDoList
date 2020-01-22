@@ -10,33 +10,6 @@ namespace Helpers.HelperOfToDoList.Extensions
     public static class ExtensionsOfFunction
     {
         /// <summary>
-        /// Calismasi sonucunda geriye T tipinde deger dondurecek olan fonksiyonlarda Try - Catch islemi yapilmak icin kullanilir
-        /// </summary>
-        /// <typeparam name="T">Geriye dondurulecek olan veri tipi</typeparam>
-        /// <param name="function">Calistirilmasi istenilen fonksiyon</param>
-        /// <param name="catchAndDo">Function calisirken olusabilecek olan Exception icin yapilmak istenilen islemler</param>
-        /// <returns></returns>
-        public static T TryCatch<T>(this Func<T> function, Func<Exception, bool> catchAndDo = null)
-        {
-            try
-            {
-                if (function != null)
-                {
-                    return function();
-                }
-            }
-            catch (Exception exception)
-            {
-                bool reThrow = catchAndDo?.Invoke(exception) ?? true;
-                if (reThrow)
-                {
-                    throw exception;
-                }
-            }
-            return default(T);
-        }
-
-        /// <summary>
         /// Calismasi sonucunda geriye T tipinde deger dondurecek olan fonksiyonlarda Try-Catch-Finally islemi yapmak icin kullanilir
         /// </summary>
         /// <typeparam name="T">Geriye dondurulecek olan veri tipi</typeparam>
