@@ -17,5 +17,9 @@ namespace Commons.CommonOfToDoList.Constants
         public const string ArgumentNullExceptionMessageForToDoListDbContext = "Lutfen ulasmak istediginiz tabloya ait repository nesnesi icin tablonun bulundugu DatabaseContext nesnesini verin! Orn: ToDoListDbContext";
 
         #endregion Database Error Messages
+
+        #region User Error Messages
+
+        #endregion User Error Messages
     }
 }

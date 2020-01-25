@@ -4,6 +4,7 @@ using System.Text;
 using Xunit;
 
 #region Global Usings
+using Helpers.HelperOfToDoList.Extensions;
 using Managers.ManagerOfToDoList.Abstracts;
 using Managers.ManagerOfToDoList.Concretes;
 using Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIModelsOfUser;
@@ -26,7 +27,7 @@ namespace Tests.XUnitTestForToDoList
         {
             Assert.True(condition: this.userManager.CreateNewUser(new WebAPIModelOfInsertUser
             {
-                UserEmail = "email@email.com",
+                UserEmail = ("SİNAN.HAMZAÇEBİ@GMAIL.ğüĞÜşiŞİöçÖçIı").ConvertTurkishCharactersToEnglishCharacters(),
                 UserName = "First User",
                 UserPassword = "Password",
                 UserSurname = "First Surname"
