@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Managers.ManagerOfToDoList\Managers.ManagerOfToDoList.csproj" />
+    <ProjectReference Include="..\Models.OtherModels.NeccesaryModelsOfToDoList\Models.OtherModels.NeccesaryModelsOfToDoList.csproj" />
+  </ItemGroup>
+
 </Project>
