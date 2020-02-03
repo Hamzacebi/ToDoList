@@ -68,8 +68,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     function: () =>
                     {
                         return this.DbContet.SaveChanges();
-                    },
-                    catchAndDo: (Exception exception) => throw exception
+                    } 
                 );
         }
 
