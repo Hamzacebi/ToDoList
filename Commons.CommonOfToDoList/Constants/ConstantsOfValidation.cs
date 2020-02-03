@@ -11,6 +11,7 @@ namespace Commons.CommonOfToDoList.Constants
     {
         #region Users
 
+        public const string UserIdCannotBeEmpty = "Kullanıcı ID bilgisi boş geçilemez!";
         public const string UserNameCannotBeEmpty = "Kullanici Adi alani bos gecilemez!";
         public const string UserEmailCannotBeEmpty = "Kullanici Email alani bos gecilemez!";
         public const string UserSurnameCannotBeEmpty = "Kullanici Soyadi alani bos gecilemez!";
