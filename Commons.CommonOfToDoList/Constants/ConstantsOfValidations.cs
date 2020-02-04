@@ -7,7 +7,7 @@ namespace Commons.CommonOfToDoList.Constants
     /// <summary>
     /// typeof(Users), typeof(Categories), typeof(ThingsToDo) ve typeof(AssignmentHistoryOfTasks) Entity'lerine ait alanlara ait Validation Error mesajlarini iceren class
     /// </summary>
-    public class ConstantsOfValidation
+    public class ConstantsOfValidations
     {
         #region Users
 

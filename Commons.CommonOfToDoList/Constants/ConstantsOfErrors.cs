@@ -7,7 +7,7 @@ namespace Commons.CommonOfToDoList.Constants
     /// <summary>
     /// Butun Error (Hata) mesajlarini icerir
     /// </summary>
-    public static class ConstantsOfError
+    public static class ConstantsOfErrors
     {
         #region Database Error Messages
 
@@ -19,7 +19,7 @@ namespace Commons.CommonOfToDoList.Constants
         #endregion Database Error Messages
 
         #region User Error Messages
-
+        public const string CreateNewUserErrorMessage = "Yeni kullanıcı oluşturulurken bir hata oluştu!";
         #endregion User Error Messages
     }
 }
