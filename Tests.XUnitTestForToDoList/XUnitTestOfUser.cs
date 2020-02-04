@@ -25,13 +25,16 @@ namespace Tests.XUnitTestForToDoList
         [Fact]
         public void CreateNewUser()
         {
-            Assert.True(condition: this.userManager.CreateNewUser(new WebAPIModelOfInsertUser
-            {
-                UserEmail = ("SİNAN.HAMZAÇEBİ@GMAIL.ğüĞÜşiŞİöçÖçIı").ConvertTurkishCharactersToEnglishCharacters(),
-                UserName = "First User",
-                UserPassword = "Password",
-                UserSurname = "First Surname"
-            }));
+            var userToCreate = this.userManager
+                                   .CreateNewUser(itemToAdd: new WebAPIModelOfInsertUser()
+                                   {
+                                       UserName = "Sinan",
+                                       UserPassword = "Palamut",
+                                       UserSurname = "Hamzaçebi",
+                                       UserEmail = "sİnan.hamza3çeuibI@.gmaıl.com".ConvertTurkishCharactersToEnglishCharacters()
+                                   });
+
+            Assert.True(condition: userToCreate.IsSuccess);
         }
     }
 }
