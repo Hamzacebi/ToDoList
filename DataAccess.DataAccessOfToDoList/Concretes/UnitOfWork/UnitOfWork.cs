@@ -25,7 +25,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 
         private bool disposedValue;
 
-        private readonly DbContext DbContet;
+        private readonly DbContext DbContext;
         private IDbContextTransaction DbContextTransaction;
 
         private readonly object lockObjectForRepositoryOfUser;
@@ -45,7 +45,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 
         public UnitOfWork(DbContext dbContext)
         {
-            this.DbContet = dbContext ?? throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
+            this.DbContext = dbContext ?? throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
                                                                          innerException: null);
 
             //DbContext nesnesi bos degilse islemler yapilsin
@@ -67,8 +67,8 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             return ExtensionsOfFunction.TryCatch<int>(
                     function: () =>
                     {
-                        return this.DbContet.SaveChanges();
-                    } 
+                        return this.DbContext.SaveChanges();
+                    }
                 );
         }
 
@@ -79,12 +79,12 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 
         void IUnitOfWork.BeginTransaction()
         {
-            if (this.DbContet != null)
+            if (this.DbContext != null)
             {
                 ExtensionsOfAction.TryCatch(
                     action: () =>
                     {
-                        this.DbContextTransaction = this.DbContet.Database.BeginTransaction(isolationLevel: System.Data.IsolationLevel.ReadUncommitted);
+                        this.DbContextTransaction = this.DbContext.Database.BeginTransaction(isolationLevel: System.Data.IsolationLevel.ReadUncommitted);
                     },
                     catchAndDo: (Exception exception) => throw exception
                 );
@@ -107,7 +107,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                             this.DbContextTransaction.Rollback();
                             throw exception;
                         },
-                        finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContet.Dispose(); }
+                        finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContext.Dispose(); }
                     );
             }
             else
@@ -128,7 +128,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                        this.DbContextTransaction.Rollback();
                        throw exception;
                    },
-                   finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContet.Dispose(); }
+                   finallyDo: () => { this.DbContextTransaction.Dispose(); this.DbContext.Dispose(); }
                );
             }
             else
@@ -153,7 +153,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfUser == null)
                         {
-                            this.repositoryOfUser = new RepositoryOfUser(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
+                            this.repositoryOfUser = new RepositoryOfUser(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -171,7 +171,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfCategory == null)
                         {
-                            this.repositoryOfCategory = new RepositoryOfCategory(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
+                            this.repositoryOfCategory = new RepositoryOfCategory(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -189,7 +189,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryOfThingToDo == null)
                         {
-                            this.repositoryOfThingToDo = new RepositoryOfThingToDo(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
+                            this.repositoryOfThingToDo = new RepositoryOfThingToDo(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -207,7 +207,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
                     {
                         if (this.repositoryAssignmentHistoryOfTask == null)
                         {
-                            this.repositoryAssignmentHistoryOfTask = new RepositoryAssignmentHistoryOfTask(dbContext: this.DbContet, inWhichDbContext: typeof(ToDoListDbContext));
+                            this.repositoryAssignmentHistoryOfTask = new RepositoryAssignmentHistoryOfTask(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
                         }
                     }
                 }
@@ -225,10 +225,12 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             {
                 if (disposing)
                 {
-                    this.DbContextTransaction.Dispose();
-                    this.DbContet.Dispose();
+                    if (this.DbContextTransaction != null)
+                    {
+                        this.DbContextTransaction.Dispose();
+                    }
+                    this.DbContext.Dispose();
                 }
-
                 disposedValue = true;
             }
         }
