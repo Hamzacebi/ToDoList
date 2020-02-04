@@ -19,7 +19,8 @@ namespace Commons.CommonOfToDoList.Constants
         #endregion Database Error Messages
 
         #region User Error Messages
-        public const string CreateNewUserErrorMessage = "Yeni kullanıcı oluşturulurken bir hata oluştu!";
+        public const string CreateNewUserTransactionErrorMessage = "Yeni kullanıcı oluşturma işlemi esnasında sistemsel bir hata oluştu!";
+        public const string UpdateExistingUserTransactionErrorMessage = "Kullanıcı güncelleme işlemi esnasında sistemsel bir hata oluştu!";
         #endregion User Error Messages
     }
 }
