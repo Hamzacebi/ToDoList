@@ -11,7 +11,7 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
 {
     public class WebAPIModelOfUpdateUser : BaseUserWebAPIModel
     {
-        [Required(ErrorMessage = ConstantsOfValidation.UserIdCannotBeEmpty)]
+        [Required(ErrorMessage = ConstantsOfValidations.UserIdCannotBeEmpty)]
         public Guid UserId { get; set; }
         public bool UserStatus { get; set; }
     }

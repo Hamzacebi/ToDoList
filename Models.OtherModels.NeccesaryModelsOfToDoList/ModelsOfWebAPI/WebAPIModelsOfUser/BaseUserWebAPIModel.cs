@@ -7,16 +7,16 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
 {
     public class BaseUserWebAPIModel
     {
-        [Required(ErrorMessage = ConstantsOfValidation.UserNameCannotBeEmpty)]
+        [Required(ErrorMessage = ConstantsOfValidations.UserNameCannotBeEmpty)]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = ConstantsOfValidation.UserEmailCannotBeEmpty)]
+        [Required(ErrorMessage = ConstantsOfValidations.UserEmailCannotBeEmpty)]
         public string UserEmail { get; set; }
 
-        [Required(ErrorMessage = ConstantsOfValidation.UserSurnameCannotBeEmpty)]
+        [Required(ErrorMessage = ConstantsOfValidations.UserSurnameCannotBeEmpty)]
         public string UserSurname { get; set; }
 
-        [Required(ErrorMessage = ConstantsOfValidation.UserPasswordCannotBeEmpty)]
+        [Required(ErrorMessage = ConstantsOfValidations.UserPasswordCannotBeEmpty)]
         public string UserPassword { get; set; }
     }
 }
