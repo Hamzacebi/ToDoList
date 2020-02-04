@@ -14,13 +14,13 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.RepositoriesOfEntities.Base
         {
             if (dbContext == null)
             {
-                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
                                                 innerException: null);
             }
 
             if (inWhichDbContext != dbContext.GetType())
             {
-                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForToDoListDbContext,
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForToDoListDbContext,
                                                 innerException: null);
             }
 
