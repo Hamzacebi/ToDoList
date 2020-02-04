@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Models.OtherModels.NeccesaryModelsOfToDoList
 {
-    public class ResultModel
+    public sealed class ResultModel
     {
         private ResultModel() { }
 

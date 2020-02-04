@@ -10,9 +10,6 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
         [Required(ErrorMessage = ConstantsOfValidations.UserNameCannotBeEmpty)]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = ConstantsOfValidations.UserEmailCannotBeEmpty)]
-        public string UserEmail { get; set; }
-
         [Required(ErrorMessage = ConstantsOfValidations.UserSurnameCannotBeEmpty)]
         public string UserSurname { get; set; }
 

@@ -9,7 +9,7 @@ using Commons.CommonOfToDoList.Constants;
 
 namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIModelsOfUser
 {
-    public class WebAPIModelOfUpdateUser : BaseUserWebAPIModel
+    public sealed class WebAPIModelOfUpdateUser : BaseUserWebAPIModel
     {
         [Required(ErrorMessage = ConstantsOfValidations.UserIdCannotBeEmpty)]
         public Guid UserId { get; set; }
