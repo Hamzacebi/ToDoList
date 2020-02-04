@@ -45,7 +45,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 
         public UnitOfWork(DbContext dbContext)
         {
-            this.DbContet = dbContext ?? throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
+            this.DbContet = dbContext ?? throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
                                                                          innerException: null);
 
             //DbContext nesnesi bos degilse islemler yapilsin
@@ -91,7 +91,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             }
             else
             {
-                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContext,
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
                                             innerException: null);
             }
         }
@@ -112,7 +112,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             }
             else
             {
-                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContextTransaction,
                                             innerException: null);
             }
         }
@@ -133,7 +133,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             }
             else
             {
-                throw new ArgumentNullException(message: ConstantsOfError.ArgumentNullExceptionMessageForDbContextTransaction,
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContextTransaction,
                                            innerException: null);
             }
         }
