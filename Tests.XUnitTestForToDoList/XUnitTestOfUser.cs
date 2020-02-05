@@ -21,7 +21,6 @@ namespace Tests.XUnitTestForToDoList
             this.userManager = new ManagerOfUser();
         }
 
-
         [Fact]
         public void CreateNewUser()
         {
@@ -31,10 +30,29 @@ namespace Tests.XUnitTestForToDoList
                                        UserName = "Sinan",
                                        UserPassword = "Palamut",
                                        UserSurname = "Hamzaçebi",
-                                       UserEmail = "sİnan.hamza3çeuibI@.gmaıl.com".ConvertTurkishCharactersToEnglishCharacters()
+                                       UserEmail = "sİnan.hamzaÇebI@gmaıl.com".ConvertTurkishCharactersToEnglishCharacters()
                                    });
 
             Assert.True(condition: userToCreate.IsSuccess);
         }
+
+        [Fact]
+        public void UpdateExistingUser()
+        {
+            var userToUpdate = this.userManager
+                                   .UpdateExistingUser(userToUpdate: new WebAPIModelOfUpdateUser()
+                                   {
+                                       UserId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37"),
+                                       UserName = "Sinan Updatee",
+                                       UserPassword = "Mezgit",
+                                       UserStatus = true,
+                                       UserSurname = "Hamzacebi"
+                                   });
+
+            Assert.True(userToUpdate.ResultInformation.IsSuccess);
+        }
+
+        //[Fact]
+        //public void GetUserById
     }
 }
