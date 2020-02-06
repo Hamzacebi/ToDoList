@@ -14,6 +14,9 @@ namespace Managers.ManagerOfToDoList.Concretes
     #region Internal Project Usings
     using Base;
     using Abstracts;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     #endregion Internal Project Usings
 
     /// <summary>
@@ -137,6 +140,48 @@ namespace Managers.ManagerOfToDoList.Concretes
             };
         }
 
+
+        ResultModelOfSelectUser IManagerOfUser.FecthUserById(Guid userId)
+        {
+            ResultModel resultToReturn = default(ResultModel);
+            WebAPIModelOfSelectUser resultToReturnOfUserInformation = default(WebAPIModelOfSelectUser);
+            try
+            {
+                DTOOfUser getUserById = this.FetchAnyUserByWhereConditions(whereConditions: x => x.Id == userId);
+                if (getUserById != null)
+                {
+                    resultToReturnOfUserInformation = new WebAPIModelOfSelectUser()
+                    {
+                        UserEmail = getUserById.Email,
+                        UserId = getUserById.Id,
+                        UserName = getUserById.Name,
+                        UserPassword = getUserById.Password,
+                        UserStatus = getUserById.Status,
+                        UserSurname = getUserById.Surname
+                    };
+                    resultToReturn = ResultModel.SuccessfulResult(successfulResultMessage: ConstantsOfResults.UserIsFound);
+                }
+                else
+                {
+                    resultToReturn = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: ConstantsOfResults.NotFoundUserMessage);
+                }
+            }
+            catch (Exception exception)
+            {
+                this.UnitOfWork.RollbackTransaction();
+                resultToReturn = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: $"{ConstantsOfErrors.FetchUserTransactionErrorMessage} HATA : {exception.Message}");
+            }
+            finally
+            {
+                this.UnitOfWork.Dispose();
+            }
+            return new ResultModelOfSelectUser()
+            {
+                SuccessInformation = resultToReturn
+            };
+        }
+
+
         #region Private Function(s)
 
         /// <summary>
@@ -172,7 +217,6 @@ namespace Managers.ManagerOfToDoList.Concretes
                                                    .RepositoryOfUser
                                                    .FetchAnyRecord(whereConditions: whereConditions));
         }
-
         #endregion Private Function(s)
     }
 }

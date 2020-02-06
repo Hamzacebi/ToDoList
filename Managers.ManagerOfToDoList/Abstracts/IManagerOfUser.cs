@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System; 
 
 #region Global Usings
 using Models.OtherModels.NeccesaryModelsOfToDoList;
@@ -25,6 +23,11 @@ namespace Managers.ManagerOfToDoList.Abstracts
         /// <returns></returns>
         ResultModelOfUpdateUser UpdateExistingUser(WebAPIModelOfUpdateUser userToUpdate);
 
-
+        /// <summary>
+        /// Sistemde kayitli olan kullaniciyi ID bilgisine gore listeleyen fonksiyon
+        /// </summary>
+        /// <param name="userId">Elde edilmek istenilen kullaniciya ait ID bilgisi</param>
+        /// <returns></returns>
+        ResultModelOfSelectUser FecthUserById(Guid userId);
     }
 }
