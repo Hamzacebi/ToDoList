@@ -8,7 +8,7 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
     public sealed class WebAPIModelOfSelectUser : BaseUserWebAPIModel
     {
         public Guid UserId { get; set; }
-        public bool UserStatus { get; set; }
         public string UserEmail { get; set; }
+        public Nullable<bool> UserStatus { get; set; }
     }
 }

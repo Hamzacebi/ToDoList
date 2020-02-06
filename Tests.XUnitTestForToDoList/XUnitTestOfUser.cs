@@ -52,7 +52,17 @@ namespace Tests.XUnitTestForToDoList
             Assert.True(userToUpdate.ResultInformation.IsSuccess);
         }
 
-        //[Fact]
-        //public void GetUserById
+        [Fact]
+        public void FetchUserByWhereConditions()
+        {
+            Guid userId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37");
+
+            var fecth = this.userManager.FetchUserByWhereConditions(new WebAPIModelOfSelectUser()
+            {
+                UserEmail = "sinan.hamzacebi@gmail.com",
+                UserId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37")
+            });
+
+        }
     }
 }
