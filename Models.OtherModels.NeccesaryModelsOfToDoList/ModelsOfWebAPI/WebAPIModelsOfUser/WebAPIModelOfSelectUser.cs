@@ -8,10 +8,7 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
     public sealed class WebAPIModelOfSelectUser : BaseUserWebAPIModel
     {
         public Guid UserId { get; set; }
-
-        [Required(ErrorMessage = ConstantsOfValidations.UserEmailCannotBeEmpty)]
-        public string UserEmail { get; set; }
-
         public bool UserStatus { get; set; }
+        public string UserEmail { get; set; }
     }
 }
