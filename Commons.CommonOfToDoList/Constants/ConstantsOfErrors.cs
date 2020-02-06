@@ -18,9 +18,28 @@ namespace Commons.CommonOfToDoList.Constants
 
         #endregion Database Error Messages
 
+        #region Base Error Message(s)
+        private const string baseTransactionErrorMessage = " işlemi esnasında sistemsel bir hata oluştu!";
+        #endregion Base Error Message(s)
+
         #region User Error Messages
-        public const string CreateNewUserTransactionErrorMessage = "Yeni kullanıcı oluşturma işlemi esnasında sistemsel bir hata oluştu!";
-        public const string UpdateExistingUserTransactionErrorMessage = "Kullanıcı güncelleme işlemi esnasında sistemsel bir hata oluştu!";
+        public const string CreateNewUserTransactionErrorMessage = "Yeni Kullanıcı oluşturma" + baseTransactionErrorMessage;
+        public const string FetchUserTransactionErrorMessage = "Kullanıcı bilgilerine ulaşma" + baseTransactionErrorMessage;
+        public const string UpdateExistingUserTransactionErrorMessage = "Kullanıcı güncelleme" + baseTransactionErrorMessage;
         #endregion User Error Messages
+
+        #region Category Error Messages
+        public const string DeleteExistingCategoryTransactionErrorMessage = "Kategori silme" + baseTransactionErrorMessage;
+        public const string CreateNewCategoryTransactionErrorMessage = "Yeni Kategori oluşturma" + baseTransactionErrorMessage;
+        public const string UpdateExistingCategoryTransactionErrorMessage = "Kategori güncelleme" + baseTransactionErrorMessage;
+        #endregion Category Error Messages
+
+        #region ThingToDo Error Messages
+
+        #endregion ThingToDo Error Messages
+
+        #region AssignmentHistoryOfTask Error Messages
+
+        #endregion AssignmentHistoryOfTask Error Messages
     }
 }
