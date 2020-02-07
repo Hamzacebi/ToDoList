@@ -30,7 +30,8 @@ namespace Commons.CommonOfToDoList.Constants
         #endregion Users Result Messages
 
         #region Categories Result Messages
-
+        public const string CreateNewCategorySuccessfulMessage = "Yeni Kategori oluşturma" + baseSuccessfulResultMessage;
+        public const string CreateNewCategoryUnsuccessfulMessage = "Yeni Kategori oluşturma" + baseUnsuccessfulResultMessage;
         #endregion Categories Result Messages
 
         #region ThingsToDo Result Messages

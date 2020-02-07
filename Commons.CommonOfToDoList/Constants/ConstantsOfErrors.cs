@@ -32,6 +32,8 @@ namespace Commons.CommonOfToDoList.Constants
         public const string DeleteExistingCategoryTransactionErrorMessage = "Kategori silme" + baseTransactionErrorMessage;
         public const string CreateNewCategoryTransactionErrorMessage = "Yeni Kategori oluşturma" + baseTransactionErrorMessage;
         public const string UpdateExistingCategoryTransactionErrorMessage = "Kategori güncelleme" + baseTransactionErrorMessage;
+
+        public const string CategoryAlreadyExistsTransactionErrorMessage = "Eklemek istediğiniz bu KATEGORİ daha önceden zaten eklenmişti. Lütfen başka bir KATEGORİ ismi girerek tekrar deneyin!";
         #endregion Category Error Messages
 
         #region ThingToDo Error Messages
