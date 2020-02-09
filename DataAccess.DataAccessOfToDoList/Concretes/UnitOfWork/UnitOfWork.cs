@@ -2,8 +2,11 @@
 using System.Text;
 using System.Collections.Generic;
 
+using System.Linq;
+
 #region Global Usings
 using Microsoft.EntityFrameworkCore;
+using Helpers.HelperOfToDoList.Tools;
 using Commons.CommonOfToDoList.Constants;
 using Helpers.HelperOfToDoList.Extensions;
 using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseContext;
@@ -16,6 +19,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
     using RepositoriesOfEntities;
     using Abstracts.RepositoriesOfEntities;
     using Microsoft.EntityFrameworkCore.Storage;
+    using System.Reflection;
 
     #endregion Internal Project Usings
 
@@ -25,7 +29,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 
         private bool disposedValue;
 
-        private readonly DbContext DbContext;
+        private DbContext DbContext;
         private IDbContextTransaction DbContextTransaction;
 
         private readonly object lockObjectForRepositoryOfUser;
@@ -51,12 +55,11 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             //DbContext nesnesi bos degilse islemler yapilsin
             this.disposedValue = default(bool);
 
-            this.lockObjectForRepositoryOfUser = new object();
-            this.lockObjectForRepositoryOfCategory = new object();
-            this.lockObjectForRepositoryOfThingToDo = new object();
+            this.lockObjectForRepositoryOfUser =
+            this.lockObjectForRepositoryOfCategory =
+            this.lockObjectForRepositoryOfThingToDo =
             this.lockObjectForRepositoryAssignmentHistoryOfTask = new object();
         }
-
         #endregion Constructor(s)
 
 
@@ -147,17 +150,14 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                if (this.repositoryOfUser == null)
-                {
-                    lock (this.lockObjectForRepositoryOfUser)
-                    {
-                        if (this.repositoryOfUser == null)
-                        {
-                            this.repositoryOfUser = new RepositoryOfUser(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
-                        }
-                    }
-                }
-                return this.repositoryOfUser;
+                //Lock object kullanimini burada mi yapmak gerekiyor yoksa CreateGenericSingletonInstance icerisinde dynamic olarak lock object mi olusturmak gerekir
+                //lock (this.lockObjectForRepositoryOfUser)
+                //{
+                //    return Helpers.HelperOfToDoList.Tools.UtilityTools.CreateGenericSingletonInstance<IRepositoryOfUser>(resultToReturnClass: typeof(RepositoryOfUser),
+                //                                                                    constructorParameters: new object[] { this.DbContext, typeof(ToDoListDbContext) });
+                //}
+                return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfUser>(resultToReturnClass: typeof(RepositoryOfUser),
+                                                                                    constructorParameters: new object[] { this.DbContext, typeof(ToDoListDbContext) });
             }
         }
 
@@ -216,7 +216,6 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         }
         #endregion Repositories Properties
 
-
         #region IDisposable Support
 
         protected virtual void Dispose(bool disposing)
@@ -225,16 +224,19 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             {
                 if (disposing)
                 {
+                    //Todo : burada olan Dispose fonksiyonu dogru olur mu?
+                    UtilityTools.Dispose();
                     if (this.DbContextTransaction != null)
                     {
                         this.DbContextTransaction.Dispose();
+                        this.DbContextTransaction = null;
                     }
                     this.DbContext.Dispose();
+                    this.DbContext = null;
                 }
                 disposedValue = true;
             }
         }
-
         void IDisposable.Dispose()
         {
             Dispose(true);
