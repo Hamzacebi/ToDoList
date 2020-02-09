@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using System.Collections.Concurrent;
 
 namespace Helpers.HelperOfToDoList.Tools
 {
     /// <summary>
     /// Proje icerisinde herhangi bir yerde kullanilacak yardimci fonksiyonlari iceren class
     /// </summary>
-    public class UtilityTools
+    public class UtilityTools : IDisposable
     {
         #region Global Properties 
-        private static Dictionary<string, object> createdObjectsOfInstances;
+        private bool disposedValue;
+        private static ConcurrentDictionary<string, object> createdObjectsOfInstances;
+        //private static Dictionary<string, object> createdObjectsOfInstances;
         #endregion Global Properties
 
         #region Constructor(s)
-        private UtilityTools() { }
+        private UtilityTools()
+        {
+            this.disposedValue = default(bool);
+        }
 
         static UtilityTools()
         {
-            createdObjectsOfInstances = new Dictionary<string, object>();
+            //createdObjectsOfInstances = new Dictionary<string, object>();
+            createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
         }
         #endregion Constructor(s)
 
-
-        //public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass)
-        //{
-        //    return default(T);
-        //}
+        public static UtilityTools CreateUtilityInstance => new UtilityTools();
 
         public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass, object[] constructorParameters)
         {
@@ -54,7 +57,9 @@ namespace Helpers.HelperOfToDoList.Tools
                     T resultToReturnInstance = createdSingletonInstance.Value;
                     if (createdSingletonInstance.IsValueCreated)
                     {
-                        createdObjectsOfInstances.Add(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
+                        //createdObjectsOfInstances.Append()
+
+                        //createdObjectsOfInstances..Add(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
                         return resultToReturnInstance;
                     }
                 }
@@ -66,14 +71,25 @@ namespace Helpers.HelperOfToDoList.Tools
             return default(T);
         }
 
+        #region IDisposable Support
 
-        #region Disposable Function
-
-        public static void Dispose()
+        protected virtual void Dispose(bool disposing)
         {
-            createdObjectsOfInstances = new Dictionary<string, object>();
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
+                }
+                disposedValue = true;
+            }
         }
-        #endregion Disposable Function
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }
