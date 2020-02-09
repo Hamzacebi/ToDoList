@@ -177,7 +177,8 @@ namespace Managers.ManagerOfToDoList.Concretes
             }
             return new ResultModelOfSelectUser()
             {
-                SuccessInformation = resultToReturn
+                SuccessInformation = resultToReturn,
+                UserInformation = resultToReturnOfUserInformation
             };
         }
 

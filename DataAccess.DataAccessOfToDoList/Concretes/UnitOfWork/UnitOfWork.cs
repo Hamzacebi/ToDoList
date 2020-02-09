@@ -224,8 +224,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             {
                 if (disposing)
                 {
-                    //Todo : burada olan Dispose fonksiyonu dogru olur mu?
-                    UtilityTools.Dispose();
+                    UtilityTools.CreateUtilityInstance.Dispose();
                     if (this.DbContextTransaction != null)
                     {
                         this.DbContextTransaction.Dispose();

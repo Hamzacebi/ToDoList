@@ -30,7 +30,7 @@ namespace Tests.XUnitTestForToDoList
                                        UserName = "Sinan",
                                        UserPassword = "Palamut",
                                        UserSurname = "Hamzaçebi",
-                                       UserEmail = "sİnan.hamzaÇebI@gmaıl.com".ConvertTurkishCharactersToEnglishCharacters()
+                                       UserEmail = "generic@instance.denemesi1".ConvertTurkishCharactersToEnglishCharacters()
                                    });
 
             Assert.True(condition: userToCreate.IsSuccess);
@@ -42,7 +42,7 @@ namespace Tests.XUnitTestForToDoList
             var userToUpdate = this.userManager
                                    .UpdateExistingUser(userToUpdate: new WebAPIModelOfUpdateUser()
                                    {
-                                       UserId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37"),
+                                       UserId = Guid.Parse(input: "e4bf2a60-0c35-4543-9866-5b8ee76d9d42"),
                                        UserName = "Sinan Updatee",
                                        UserPassword = "Mezgit",
                                        UserStatus = true,
@@ -55,14 +55,8 @@ namespace Tests.XUnitTestForToDoList
         [Fact]
         public void FetchUserByWhereConditions()
         {
-            Guid userId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37");
-
-            var fecth = this.userManager.FetchUserByWhereConditions(new WebAPIModelOfSelectUser()
-            {
-                UserEmail = "sinan.hamzacebi@gmail.com",
-                UserId = Guid.Parse(input: "d1477a22-22b7-4944-9d9c-c56b091c7f37")
-            });
-
+            var fetchUserById = this.userManager.FecthUserById(userId: Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982"));
+            Assert.True(condition: fetchUserById.SuccessInformation.IsSuccess);
         }
     }
 }

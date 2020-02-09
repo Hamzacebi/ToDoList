@@ -12,7 +12,7 @@ using Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfDataTransferObject;
 
 namespace Managers.ManagerOfToDoList.Base
 {
-    public abstract class BaseManager
+    public abstract class BaseManager : IDisposable
     {
         #region Global Properties
 
@@ -139,8 +139,34 @@ namespace Managers.ManagerOfToDoList.Base
                 return this.assignmentHistoryOfTaskMapper;
             }
         }
-
         #endregion Mapper Properties
+
+
+        #region IDisposable Support
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    //this.UnitOfWork.Dispose();
+                    //this.unitOfWork = null;
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        void IDisposable.Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion IDisposable Support
 
     }
 }
