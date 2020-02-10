@@ -150,14 +150,9 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                //Lock object kullanimini burada mi yapmak gerekiyor yoksa CreateGenericSingletonInstance icerisinde dynamic olarak lock object mi olusturmak gerekir
-                //lock (this.lockObjectForRepositoryOfUser)
-                //{
-                //    return Helpers.HelperOfToDoList.Tools.UtilityTools.CreateGenericSingletonInstance<IRepositoryOfUser>(resultToReturnClass: typeof(RepositoryOfUser),
-                //                                                                    constructorParameters: new object[] { this.DbContext, typeof(ToDoListDbContext) });
-                //}
                 return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfUser>(resultToReturnClass: typeof(RepositoryOfUser),
-                                                                                    constructorParameters: new object[] { this.DbContext, typeof(ToDoListDbContext) });
+                                                                                    constructorParameters: new object[] { this.DbContext,
+                                                                                                                          typeof(ToDoListDbContext) });
             }
         }
 
@@ -165,17 +160,9 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                if (this.repositoryOfCategory == null)
-                {
-                    lock (this.lockObjectForRepositoryOfCategory)
-                    {
-                        if (this.repositoryOfCategory == null)
-                        {
-                            this.repositoryOfCategory = new RepositoryOfCategory(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
-                        }
-                    }
-                }
-                return this.repositoryOfCategory;
+                return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfCategory>(resultToReturnClass: typeof(RepositoryOfUser),
+                                                                                          constructorParameters: new object[] { this.DbContext,
+                                                                                                                                typeof(ToDoListDbContext) });
             }
         }
 
@@ -183,17 +170,9 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                if (this.repositoryOfThingToDo == null)
-                {
-                    lock (this.lockObjectForRepositoryOfThingToDo)
-                    {
-                        if (this.repositoryOfThingToDo == null)
-                        {
-                            this.repositoryOfThingToDo = new RepositoryOfThingToDo(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
-                        }
-                    }
-                }
-                return this.repositoryOfThingToDo;
+                return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfThingToDo>(resultToReturnClass: typeof(RepositoryOfThingToDo),
+                                                                                    constructorParameters: new object[] { this.DbContext,
+                                                                                                                          typeof(ToDoListDbContext) });
             }
         }
 
@@ -201,17 +180,9 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                if (this.repositoryAssignmentHistoryOfTask == null)
-                {
-                    lock (this.lockObjectForRepositoryAssignmentHistoryOfTask)
-                    {
-                        if (this.repositoryAssignmentHistoryOfTask == null)
-                        {
-                            this.repositoryAssignmentHistoryOfTask = new RepositoryAssignmentHistoryOfTask(dbContext: this.DbContext, inWhichDbContext: typeof(ToDoListDbContext));
-                        }
-                    }
-                }
-                return this.repositoryAssignmentHistoryOfTask;
+                return UtilityTools.CreateGenericSingletonInstance<IRepositoryAssignmentHistoryOfTask>(resultToReturnClass: typeof(RepositoryAssignmentHistoryOfTask),
+                                                                                                       constructorParameters: new object[] { this.DbContext,
+                                                                                                                                             typeof(ToDoListDbContext) });
             }
         }
         #endregion Repositories Properties
