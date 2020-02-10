@@ -18,6 +18,10 @@ namespace Commons.CommonOfToDoList.Constants
 
         #endregion Database Error Messages
 
+        #region General Error Messages
+        public const string ImplementationExceptionMessage = "";
+        #endregion General Error Messages
+
         #region Base Error Message(s)
         private const string baseTransactionErrorMessage = " işlemi esnasında sistemsel bir hata oluştu!";
         #endregion Base Error Message(s)
