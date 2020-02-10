@@ -14,8 +14,7 @@ namespace Helpers.HelperOfToDoList.Tools
     {
         #region Global Properties 
         private bool disposedValue;
-        private static ConcurrentDictionary<string, object> createdObjectsOfInstances;
-        //private static Dictionary<string, object> createdObjectsOfInstances;
+        private static readonly ConcurrentDictionary<string, object> createdObjectsOfInstances;
         #endregion Global Properties
 
         #region Constructor(s)
@@ -26,13 +25,24 @@ namespace Helpers.HelperOfToDoList.Tools
 
         static UtilityTools()
         {
-            //createdObjectsOfInstances = new Dictionary<string, object>();
             createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
         }
         #endregion Constructor(s)
 
         public static UtilityTools CreateUtilityInstance => new UtilityTools();
 
+        public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass)
+        {
+            return default(T);
+        }
+
+        /// <summary>
+        /// Kendisine verilen Interface ve Class degerlerine gore Singleton olarak bir instance uretmeye yarayan fonksiyon
+        /// </summary>
+        /// <typeparam name="T">Instance degeri elde edilmek istenilen Interface</typeparam>
+        /// <param name="resultToReturnClass">Interface'den Inherit edilmis olan class</param>
+        /// <param name="constructorParameters">Inherit edilmis olan class'a ait Constructor'a gonderilmek istenilen parametre / parametreler</param>
+        /// <returns></returns>
         public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass, object[] constructorParameters)
         {
             if (resultToReturnClass != null)
@@ -47,8 +57,7 @@ namespace Helpers.HelperOfToDoList.Tools
                     {
                         return (T)createdObjectsOfInstances[interfaceOfInherit.FullName];
                     }
-                    Lazy<T> createdSingletonInstance = new Lazy<T>(isThreadSafe: true,
-                                                                   valueFactory: () =>
+                    Lazy<T> createdSingletonInstance = new Lazy<T>(valueFactory: () =>
                                                                    {
                                                                        object createdInstance = Activator.CreateInstance(type: resultToReturnClass,
                                                                                                                          args: constructorParameters);
@@ -57,29 +66,27 @@ namespace Helpers.HelperOfToDoList.Tools
                     T resultToReturnInstance = createdSingletonInstance.Value;
                     if (createdSingletonInstance.IsValueCreated)
                     {
-                        //createdObjectsOfInstances.Append()
-
-                        //createdObjectsOfInstances..Add(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
+                        createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
                         return resultToReturnInstance;
                     }
                 }
                 else
                 {
-                    throw new NotImplementedException(message: "Elde edilmek istenilen class, verilen typeof(T) tipindeki interfaceden miras almadi");
+                    throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
                 }
             }
             return default(T);
         }
 
+        //ToDo : IDisposable icin calisilip burasi ve tum projede ki IDisposable implementationlari duzeltilecek
         #region IDisposable Support
-
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 if (disposing)
                 {
-                    createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
+                    createdObjectsOfInstances.Clear();
                 }
                 disposedValue = true;
             }
