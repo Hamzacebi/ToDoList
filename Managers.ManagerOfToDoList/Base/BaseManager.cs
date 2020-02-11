@@ -1,6 +1,7 @@
 ﻿using System;
 
 #region Global Usings 
+using Helpers.HelperOfToDoList.Tools;
 using Helpers.HelperOfToDoList.Mappers;
 using Helpers.HelperOfToDoList.Mappers.Base;
 using DataAccess.DataAccessOfToDoList.Abstracts.UnitOfWork;
@@ -16,18 +17,11 @@ namespace Managers.ManagerOfToDoList.Base
     {
         #region Global Properties
 
-        private IUnitOfWork unitOfWork;
-
-        private readonly object lockObjectForUnitOfWork;
-        private readonly object lockObjectForUserMapper;
-        private readonly object lockObjectForCategoryMapper;
-        private readonly object lockObjectForThingToDoMapper;
-        private readonly object lockObjectForAssignmentHistoryOfTaskMapper;
-
-        private IMapper<Users, DTOOfUser> userMapper;
-        private IMapper<Categories, DTOOfCategory> categoryMapper;
-        private IMapper<ThingsToDo, DTOOfThingToDo> thingToDoMapper;
-        private IMapper<AssignmentHistoryOfTasks, DTOOfAssignmentHistoryOfTask> assignmentHistoryOfTaskMapper;
+        //private readonly object lockObjectForUnitOfWork;
+        //private readonly object lockObjectForUserMapper;
+        //private readonly object lockObjectForCategoryMapper;
+        //private readonly object lockObjectForThingToDoMapper;
+        //private readonly object lockObjectForAssignmentHistoryOfTaskMapper;
 
         #endregion Global Properties
 
@@ -35,11 +29,11 @@ namespace Managers.ManagerOfToDoList.Base
 
         protected BaseManager()
         {
-            this.lockObjectForUnitOfWork =
-            this.lockObjectForUserMapper =
-            this.lockObjectForCategoryMapper =
-            this.lockObjectForThingToDoMapper =
-            this.lockObjectForAssignmentHistoryOfTaskMapper = new object();
+            //this.lockObjectForUnitOfWork =
+            //this.lockObjectForUserMapper =
+            //this.lockObjectForCategoryMapper =
+            //this.lockObjectForThingToDoMapper =
+            //this.lockObjectForAssignmentHistoryOfTaskMapper = new object();
         }
 
         #endregion Constructor(s)
@@ -50,17 +44,8 @@ namespace Managers.ManagerOfToDoList.Base
         {
             get
             {
-                if (this.unitOfWork == null)
-                {
-                    lock (this.lockObjectForUnitOfWork)
-                    {
-                        if (this.unitOfWork == null)
-                        {
-                            this.unitOfWork = new UnitOfWork(dbContext: new ToDoListDbContext());
-                        }
-                    }
-                }
-                return this.unitOfWork;
+                return UtilityTools.CreateGenericSingletonInstance<IUnitOfWork>(resultToReturnClass: typeof(UnitOfWork),
+                                                                                constructorParameters: new object[] { new ToDoListDbContext() });
             }
         }
 
@@ -72,17 +57,7 @@ namespace Managers.ManagerOfToDoList.Base
         {
             get
             {
-                if (this.userMapper == null)
-                {
-                    lock (this.lockObjectForUserMapper)
-                    {
-                        if (this.userMapper == null)
-                        {
-                            this.userMapper = new UserMapper();
-                        }
-                    }
-                }
-                return this.userMapper;
+                return UtilityTools.CreateGenericSingletonInstance<IMapper<Users, DTOOfUser>>(resultToReturnClass: typeof(UserMapper));
             }
         }
 
@@ -90,17 +65,7 @@ namespace Managers.ManagerOfToDoList.Base
         {
             get
             {
-                if (this.categoryMapper == null)
-                {
-                    lock (this.lockObjectForCategoryMapper)
-                    {
-                        if (this.categoryMapper == null)
-                        {
-                            this.categoryMapper = new CategoryMapper();
-                        }
-                    }
-                }
-                return this.categoryMapper;
+                return UtilityTools.CreateGenericSingletonInstance<IMapper<Categories, DTOOfCategory>>(resultToReturnClass: typeof(CategoryMapper));
             }
         }
 
@@ -108,17 +73,7 @@ namespace Managers.ManagerOfToDoList.Base
         {
             get
             {
-                if (this.thingToDoMapper == null)
-                {
-                    lock (this.lockObjectForThingToDoMapper)
-                    {
-                        if (this.thingToDoMapper == null)
-                        {
-                            this.thingToDoMapper = new ThingToDoMapper();
-                        }
-                    }
-                }
-                return this.thingToDoMapper;
+                return UtilityTools.CreateGenericSingletonInstance<IMapper<ThingsToDo, DTOOfThingToDo>>(resultToReturnClass: typeof(ThingToDoMapper));
             }
         }
 
@@ -126,17 +81,8 @@ namespace Managers.ManagerOfToDoList.Base
         {
             get
             {
-                if (this.assignmentHistoryOfTaskMapper == null)
-                {
-                    lock (this.lockObjectForAssignmentHistoryOfTaskMapper)
-                    {
-                        if (this.assignmentHistoryOfTaskMapper == null)
-                        {
-                            this.assignmentHistoryOfTaskMapper = new AssignmentHistoryOfTaskMapper();
-                        }
-                    }
-                }
-                return this.assignmentHistoryOfTaskMapper;
+                return UtilityTools.CreateGenericSingletonInstance<IMapper<AssignmentHistoryOfTasks,
+                                                                           DTOOfAssignmentHistoryOfTask>>(resultToReturnClass: typeof(AssignmentHistoryOfTaskMapper));
             }
         }
         #endregion Mapper Properties
@@ -151,13 +97,9 @@ namespace Managers.ManagerOfToDoList.Base
             {
                 if (disposing)
                 {
-                    //this.UnitOfWork.Dispose();
-                    //this.unitOfWork = null;
+                    this.UnitOfWork.Dispose();
+                    UtilityTools.CreateUtilityInstance.Dispose();
                 }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
-
                 disposedValue = true;
             }
         }
