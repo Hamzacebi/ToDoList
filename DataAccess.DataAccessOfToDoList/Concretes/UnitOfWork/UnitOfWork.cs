@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-
-using System.Linq;
 
 #region Global Usings
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +11,10 @@ using Models.EntitiesOfProjects.EntitiesOfToDoList.DatabaseContext;
 namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
 {
     #region Internal Project Usings
-    using Abstracts.UnitOfWork;
-    using RepositoriesOfEntities;
     using Abstracts.RepositoriesOfEntities;
+    using Abstracts.UnitOfWork;
     using Microsoft.EntityFrameworkCore.Storage;
-    using System.Reflection;
+    using RepositoriesOfEntities;
 
     #endregion Internal Project Usings
 
@@ -32,15 +27,10 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         private DbContext DbContext;
         private IDbContextTransaction DbContextTransaction;
 
-        private readonly object lockObjectForRepositoryOfUser;
-        private readonly object lockObjectForRepositoryOfCategory;
-        private readonly object lockObjectForRepositoryOfThingToDo;
-        private readonly object lockObjectForRepositoryAssignmentHistoryOfTask;
-
-        private IRepositoryOfUser repositoryOfUser;
-        private IRepositoryOfCategory repositoryOfCategory;
-        private IRepositoryOfThingToDo repositoryOfThingToDo;
-        private IRepositoryAssignmentHistoryOfTask repositoryAssignmentHistoryOfTask;
+        //private readonly object lockObjectForRepositoryOfUser;
+        //private readonly object lockObjectForRepositoryOfCategory;
+        //private readonly object lockObjectForRepositoryOfThingToDo;
+        //private readonly object lockObjectForRepositoryAssignmentHistoryOfTask;
 
         #endregion Global Properties
 
@@ -55,10 +45,10 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             //DbContext nesnesi bos degilse islemler yapilsin
             this.disposedValue = default(bool);
 
-            this.lockObjectForRepositoryOfUser =
-            this.lockObjectForRepositoryOfCategory =
-            this.lockObjectForRepositoryOfThingToDo =
-            this.lockObjectForRepositoryAssignmentHistoryOfTask = new object();
+            //this.lockObjectForRepositoryOfUser =
+            //this.lockObjectForRepositoryOfCategory =
+            //this.lockObjectForRepositoryOfThingToDo =
+            //this.lockObjectForRepositoryAssignmentHistoryOfTask = new object();
         }
         #endregion Constructor(s)
 
