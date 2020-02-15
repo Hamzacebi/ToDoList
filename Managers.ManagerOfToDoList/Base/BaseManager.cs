@@ -16,24 +16,12 @@ namespace Managers.ManagerOfToDoList.Base
     public abstract class BaseManager : IDisposable
     {
         #region Global Properties
-
-        //private readonly object lockObjectForUnitOfWork;
-        //private readonly object lockObjectForUserMapper;
-        //private readonly object lockObjectForCategoryMapper;
-        //private readonly object lockObjectForThingToDoMapper;
-        //private readonly object lockObjectForAssignmentHistoryOfTaskMapper;
-
         #endregion Global Properties
 
         #region Constructor(s)
 
         protected BaseManager()
         {
-            //this.lockObjectForUnitOfWork =
-            //this.lockObjectForUserMapper =
-            //this.lockObjectForCategoryMapper =
-            //this.lockObjectForThingToDoMapper =
-            //this.lockObjectForAssignmentHistoryOfTaskMapper = new object();
         }
 
         #endregion Constructor(s)
