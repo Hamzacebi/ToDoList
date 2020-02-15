@@ -27,11 +27,6 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         private DbContext DbContext;
         private IDbContextTransaction DbContextTransaction;
 
-        //private readonly object lockObjectForRepositoryOfUser;
-        //private readonly object lockObjectForRepositoryOfCategory;
-        //private readonly object lockObjectForRepositoryOfThingToDo;
-        //private readonly object lockObjectForRepositoryAssignmentHistoryOfTask;
-
         #endregion Global Properties
 
 
@@ -41,14 +36,8 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             this.DbContext = dbContext ?? throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForDbContext,
                                                                          innerException: null);
-
             //DbContext nesnesi bos degilse islemler yapilsin
             this.disposedValue = default(bool);
-
-            //this.lockObjectForRepositoryOfUser =
-            //this.lockObjectForRepositoryOfCategory =
-            //this.lockObjectForRepositoryOfThingToDo =
-            //this.lockObjectForRepositoryAssignmentHistoryOfTask = new object();
         }
         #endregion Constructor(s)
 
@@ -161,8 +150,8 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             get
             {
                 return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfThingToDo>(resultToReturnClass: typeof(RepositoryOfThingToDo),
-                                                                                    constructorParameters: new object[] { this.DbContext,
-                                                                                                                          typeof(ToDoListDbContext) });
+                                                                                           constructorParameters: new object[] { this.DbContext,
+                                                                                                                                 typeof(ToDoListDbContext) });
             }
         }
 
