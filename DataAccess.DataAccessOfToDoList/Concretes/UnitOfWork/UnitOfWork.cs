@@ -139,7 +139,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
         {
             get
             {
-                return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfCategory>(resultToReturnClass: typeof(RepositoryOfUser),
+                return UtilityTools.CreateGenericSingletonInstance<IRepositoryOfCategory>(resultToReturnClass: typeof(RepositoryOfCategory),
                                                                                           constructorParameters: new object[] { this.DbContext,
                                                                                                                                 typeof(ToDoListDbContext) });
             }
