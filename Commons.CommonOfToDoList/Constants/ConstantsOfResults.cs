@@ -21,7 +21,7 @@ namespace Commons.CommonOfToDoList.Constants
         public const string CreateNewUserSuccessfulMessage = "Yeni kullanıcı oluşturma" + baseSuccessfulResultMessage;
         public const string CreateNewUserUnsuccessfulMessage = "Yeni kullanıcı oluşturma" + baseUnsuccessfulResultMessage;
 
-        public const string NotFoundUserMessage = "Kullanıcı bulunamadı. Lütfen tekrar deneyin!";
+        public const string UserNotFoundMessage = "Kullanıcı bulunamadı. Lütfen tekrar deneyin!";
 
         public const string UpdateUserSuccessfulMessage = "Kullanıcı güncelleme" + baseSuccessfulResultMessage;
         public const string UpdateUserUnsuccessfulMessage = "Kullanıcı güncelleme" + baseUnsuccessfulResultMessage;
@@ -32,6 +32,11 @@ namespace Commons.CommonOfToDoList.Constants
         #region Categories Result Messages
         public const string CreateNewCategorySuccessfulMessage = "Yeni Kategori oluşturma" + baseSuccessfulResultMessage;
         public const string CreateNewCategoryUnsuccessfulMessage = "Yeni Kategori oluşturma" + baseUnsuccessfulResultMessage;
+
+        public const string UpdateExistsCategorySuccessfulMessage = "Kategori güncelleme" + baseSuccessfulResultMessage;
+        public const string UpdateExistingCategoryUnsuccessfulMessage = "Kategoryi güncelleme" + baseUnsuccessfulResultMessage;
+
+        public const string CategoryNotFoundMessage = "Güncellenmek istenilen KATEGORİ bılunamadı. Lütfen tekrar deneyin!";
         #endregion Categories Result Messages
 
         #region ThingsToDo Result Messages

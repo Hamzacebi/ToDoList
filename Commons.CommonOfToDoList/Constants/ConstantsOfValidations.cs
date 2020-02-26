@@ -20,10 +20,11 @@ namespace Commons.CommonOfToDoList.Constants
         #endregion Users
 
         #region Categories
+        public const string CategoryIdCannotBeEmpty = "Kategori ID boş geçilemez!";
         public const string CategoryNameCannotBeEmpty = "Kategori Adı alanı boş geçilemez!";
         public const string CategoryDescriptionCannotBeEmpty = "Kategori Açıklaması alanı boş geçilemez!";
         public const string CategoryStatusCannotBeEmpty = "Kategori Aktiflik - Pasiflik bilgisi boş geçilemez!";
-        public const string CategoryOwnerUserIdCannotBeEmpty = "Kategoriyi ekleyen Kullanıcı ID bilgisi boş geçilemez!";
+        public const string UserIdOfCategoryOwnerCannotBeEmpty = "Kategoriyi ekleyen Kullanıcı ID bilgisi boş geçilemez!";
         #endregion Categories
 
         #region ThingsToDo

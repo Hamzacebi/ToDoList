@@ -38,6 +38,8 @@ namespace Commons.CommonOfToDoList.Constants
         public const string UpdateExistingCategoryTransactionErrorMessage = "Kategori güncelleme" + baseTransactionErrorMessage;
 
         public const string CategoryAlreadyExistsTransactionErrorMessage = "Eklemek istediğiniz bu KATEGORİ daha önceden zaten eklenmişti. Lütfen başka bir KATEGORİ ismi girerek tekrar deneyin!";
+
+        public const string SelectAllCategoriesTransactionErrorMessage = "Sistemde size ait olan tüm KATEGORİLERİN listelenmesi" + baseTransactionErrorMessage;
         #endregion Category Error Messages
 
         #region ThingToDo Error Messages
