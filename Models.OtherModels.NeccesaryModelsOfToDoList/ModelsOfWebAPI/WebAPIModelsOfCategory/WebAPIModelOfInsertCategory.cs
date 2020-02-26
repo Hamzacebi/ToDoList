@@ -9,7 +9,7 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
 {
     public sealed class WebAPIModelOfInsertCategory : BaseWebAPIModelOfCategory
     {
-        [Required(ErrorMessage = ConstantsOfValidations.CategoryOwnerUserIdCannotBeEmpty)]
-        public Guid CategoryOwnerUserId { get; set; }
+        [Required(ErrorMessage = ConstantsOfValidations.UserIdOfCategoryOwnerCannotBeEmpty)]
+        public Guid UserIdOfCategoryOwner { get; set; }
     }
 }

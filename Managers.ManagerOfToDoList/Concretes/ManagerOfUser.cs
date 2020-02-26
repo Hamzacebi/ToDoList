@@ -121,7 +121,7 @@ namespace Managers.ManagerOfToDoList.Concretes
                 }
                 else
                 {
-                    successInformation = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: ConstantsOfResults.NotFoundUserMessage);
+                    successInformation = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: ConstantsOfResults.UserNotFoundMessage);
                 }
             }
             catch (Exception exception)
@@ -140,14 +140,14 @@ namespace Managers.ManagerOfToDoList.Concretes
             };
         }
 
-
-        ResultModelOfSelectUser IManagerOfUser.FecthUserById(Guid userId)
+        ResultModelOfSelectUser IManagerOfUser.FetchUserById(Guid userId)
         {
             ResultModel resultToReturn = default(ResultModel);
             WebAPIModelOfSelectUser resultToReturnOfUserInformation = default(WebAPIModelOfSelectUser);
             try
             {
-                DTOOfUser getUserById = this.FetchAnyUserByWhereConditions(whereConditions: x => x.Id == userId);
+                DTOOfUser getUserById = this.UserMapper.MapToDTO(entityObject: this.UnitOfWork.RepositoryOfUser
+                                                                                              .FetchAnyRecord(id: userId));
                 if (getUserById != null)
                 {
                     resultToReturnOfUserInformation = new WebAPIModelOfSelectUser()
@@ -163,12 +163,11 @@ namespace Managers.ManagerOfToDoList.Concretes
                 }
                 else
                 {
-                    resultToReturn = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: ConstantsOfResults.NotFoundUserMessage);
+                    resultToReturn = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: ConstantsOfResults.UserNotFoundMessage);
                 }
             }
             catch (Exception exception)
             {
-                this.UnitOfWork.RollbackTransaction();
                 resultToReturn = ResultModel.UnsuccessfulResult(unsuccessfulResultMessage: $"{ConstantsOfErrors.FetchUserTransactionErrorMessage} HATA : {exception.Message}");
             }
             finally

@@ -28,8 +28,27 @@ namespace Tests.XUnitTestForToDoList
                 {
                     CategoryName = "İlk Kategori",
                     CategoryDescription = "Eklenen ilk Kategori",
-                    CategoryOwnerUserId = Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982")
+                    UserIdOfCategoryOwner = Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982")
                 });
+        }
+
+        [Fact]
+        public void UpdateExistingCategory()
+        {
+            var updatedCategory = this.managerOfCategory.UpdateExistingCategory(new WebAPIModelOfUpdateCategory()
+            {
+                CategoryDescription = "First Update",
+                CategoryId = 3,
+                CategoryName = "İlk Kategori",
+                CategoryStatus = false,
+                UserIdOfCategoryOwner = Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982")
+            });
+        }
+
+        [Fact]
+        public void FetchAllCategoryByUserId()
+        {
+            var allCategoriesOwnedByTheUser = this.managerOfCategory.FetchAllCategoryByUserId(userId: Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982"));
         }
     }
 }

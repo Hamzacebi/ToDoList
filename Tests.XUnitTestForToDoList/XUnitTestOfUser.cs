@@ -55,7 +55,7 @@ namespace Tests.XUnitTestForToDoList
         [Fact]
         public void FetchUserByWhereConditions()
         {
-            var fetchUserById = this.userManager.FecthUserById(userId: Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982"));
+            var fetchUserById = this.userManager.FetchUserById(userId: Guid.Parse(input: "bc604889-aefc-43c1-81a5-b97cacfa3982"));
             Assert.True(condition: fetchUserById.SuccessInformation.IsSuccess);
         }
     }

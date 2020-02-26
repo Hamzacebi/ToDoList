@@ -28,6 +28,6 @@ namespace Managers.ManagerOfToDoList.Abstracts
         /// </summary>
         /// <param name="userId">Elde edilmek istenilen kullaniciya ait ID bilgisi</param>
         /// <returns></returns>
-        ResultModelOfSelectUser FecthUserById(Guid userId);
+        ResultModelOfSelectUser FetchUserById(Guid userId);
     }
 }

@@ -9,7 +9,14 @@ namespace Models.OtherModels.NeccesaryModelsOfToDoList.ModelsOfWebAPI.WebAPIMode
 {
     public class WebAPIModelOfUpdateCategory : BaseWebAPIModelOfCategory
     {
+        [Required(ErrorMessage = ConstantsOfValidations.CategoryIdCannotBeEmpty)]
+        public short CategoryId { get; set; }
+
         [Required(ErrorMessage = ConstantsOfValidations.CategoryStatusCannotBeEmpty)]
         public bool CategoryStatus { get; set; }
+
+        [Required(ErrorMessage = ConstantsOfValidations.UserIdOfCategoryOwnerCannotBeEmpty)]
+        public Guid UserIdOfCategoryOwner { get; set; }
+
     }
 }
