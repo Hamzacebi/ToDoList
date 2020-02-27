@@ -62,7 +62,7 @@ namespace Helpers.HelperOfToDoList.Tools
                     if (createdSingletonInstance.IsValueCreated)
                     {
                         createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName,
-                                                         value: resultToReturnClass);
+                                                         value: resultToReturnSingletonInstance);
                         return resultToReturnSingletonInstance;
                     }
                 }
