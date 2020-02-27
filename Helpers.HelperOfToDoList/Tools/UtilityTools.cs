@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿#region Added Project Referances and Global Usings
+using System;
 using System.Linq;
+using System.Reflection;
 using System.Collections.Concurrent;
+using Commons.CommonOfToDoList.Constants;
+#endregion Added Project Referances and Global Usings
 
 namespace Helpers.HelperOfToDoList.Tools
 {
@@ -87,31 +88,38 @@ namespace Helpers.HelperOfToDoList.Tools
             if (resultToReturnClass != null)
             {
                 Type interfaceOfInherit = typeof(T);
-
-                bool isInheritedInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
-                                                                           .Contains(value: interfaceOfInherit);
-                if (isInheritedInterface)
+                if (constructorParameters != null && constructorParameters.Any())
                 {
-                    if (createdObjectsOfInstances.ContainsKey(key: interfaceOfInherit.FullName))
+                    bool isInheritedInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
+                                                                               .Contains(value: interfaceOfInherit);
+                    if (isInheritedInterface)
                     {
-                        return (T)createdObjectsOfInstances[interfaceOfInherit.FullName];
+                        if (createdObjectsOfInstances.ContainsKey(key: interfaceOfInherit.FullName))
+                        {
+                            return (T)createdObjectsOfInstances[interfaceOfInherit.FullName];
+                        }
+                        Lazy<T> createdSingletonInstance = new Lazy<T>(valueFactory: () =>
+                                                                       {
+                                                                           object createdInstance = Activator.CreateInstance(type: resultToReturnClass,
+                                                                                                                             args: constructorParameters);
+                                                                           return (T)createdInstance;
+                                                                       });
+                        T resultToReturnInstance = createdSingletonInstance.Value;
+                        if (createdSingletonInstance.IsValueCreated)
+                        {
+                            createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
+                            return resultToReturnInstance;
+                        }
                     }
-                    Lazy<T> createdSingletonInstance = new Lazy<T>(valueFactory: () =>
-                                                                   {
-                                                                       object createdInstance = Activator.CreateInstance(type: resultToReturnClass,
-                                                                                                                         args: constructorParameters);
-                                                                       return (T)createdInstance;
-                                                                   });
-                    T resultToReturnInstance = createdSingletonInstance.Value;
-                    if (createdSingletonInstance.IsValueCreated)
+                    else
                     {
-                        createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
-                        return resultToReturnInstance;
+                        throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
                     }
                 }
                 else
                 {
-                    throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
+                    throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForConstructorParameters,
+                                                    innerException: null);
                 }
             }
             return default(T);

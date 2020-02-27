@@ -20,6 +20,9 @@ namespace Commons.CommonOfToDoList.Constants
 
         #region General Error Messages
         public const string ImplementationExceptionMessage = "";
+
+        public const string ArgumentNullExceptionMessageForConstructorParameters = "'resultToReturnClass' adli parametre icin tanimlanmis olan typeof(T) tipindeki CLASS icin DEFAULT Constructor olmalidir veya Constructor icin istenilen initialize parametrelerini gondermek zorundasiniz! Lutfen ilgili CLASS icin DEFAULT Constructor tanimlayin veya Constructor'un ihtiyac duydugu parametreleri gondererek tekrar deneyin!";
+
         #endregion General Error Messages
 
         #region Base Error Message(s)
