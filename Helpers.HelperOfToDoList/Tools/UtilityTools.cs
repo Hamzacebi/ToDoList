@@ -32,6 +32,7 @@ namespace Helpers.HelperOfToDoList.Tools
 
         public static UtilityTools CreateUtilityInstance => new UtilityTools();
 
+
         /// <summary>
         /// Kendisine verilen Interface ve Class degerlerine gore Singleton olarak bir Constructor'a herhangi bir deger 
         /// gondermeden instance uretmeye yarayan fonksiyon
@@ -41,39 +42,43 @@ namespace Helpers.HelperOfToDoList.Tools
         /// <returns></returns>
         public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass)
         {
-            if (resultToReturnClass != null)
+            if (resultToReturnClass == null)
             {
-                Type interfaceOfInherit = typeof(T);
-
-                bool isInheritedInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
-                                                                           .Contains(value: interfaceOfInherit);
-                if (isInheritedInterface)
-                {
-                    if (createdObjectsOfInstances.ContainsKey(key: interfaceOfInherit.FullName))
-                    {
-                        return (T)createdObjectsOfInstances[key: interfaceOfInherit.FullName];
-                    }
-                    Lazy<T> createdSingletonInstance = new Lazy<T>(valueFactory: () =>
-                    {
-                        object createdInstance = Activator.CreateInstance(type: resultToReturnClass);
-                        return (T)createdInstance;
-                    });
-
-                    T resultToReturnSingletonInstance = createdSingletonInstance.Value;
-                    if (createdSingletonInstance.IsValueCreated)
-                    {
-                        createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName,
-                                                         value: resultToReturnSingletonInstance);
-                        return resultToReturnSingletonInstance;
-                    }
-                }
-                else
-                {
-                    throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
-                }
+                throw new NullReferenceException(message: ConstantsOfErrors.NullReferenceExceptionForResultToReturnClassType);
             }
-            return default(T);
+
+            Type interfaceOfInherit = typeof(T);
+
+            bool isClassInheritedToInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
+                                                                              .Contains(value: interfaceOfInherit);
+            if (isClassInheritedToInterface)
+            {
+                if (createdObjectsOfInstances.ContainsKey(key: interfaceOfInherit.FullName))
+                {
+                    object outParameterForImplementedClass = null;
+                    var isThereAnyFecth = createdObjectsOfInstances.TryGetValue(key: interfaceOfInherit.FullName, value: out outParameterForImplementedClass);
+                    if (isThereAnyFecth)
+                    {
+                        return (T)outParameterForImplementedClass;
+                    }
+                    throw new InvalidCastException(message: ConstantsOfErrors.InvalidCastExceptionForFetchInheritedClass);
+                }
+                Lazy<T> createSingletonInstance = new Lazy<T>(valueFactory: () =>
+                {
+                    return (T)Activator.CreateInstance(type: resultToReturnClass);
+                });
+                T resultToReturnOfCreatedSingletonInstance = createSingletonInstance.Value;
+                if (createSingletonInstance.IsValueCreated)
+                {
+                    createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName,
+                                                     value: resultToReturnOfCreatedSingletonInstance);
+                    return resultToReturnOfCreatedSingletonInstance;
+                }
+                throw new Exception(message: ConstantsOfErrors.ExceptionMessageForCreateInstance);
+            }
+            throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
         }
+
 
         /// <summary>
         /// Kendisine verilen Interface ve Class degerlerine gore Singleton olarak bir Constructor'a, kendisine verilen degerleri
@@ -85,45 +90,55 @@ namespace Helpers.HelperOfToDoList.Tools
         /// <returns></returns>
         public static T CreateGenericSingletonInstance<T>(Type resultToReturnClass, object[] constructorParameters)
         {
-            if (resultToReturnClass != null)
+            if (resultToReturnClass == null)
             {
-                Type interfaceOfInherit = typeof(T);
-                if (constructorParameters != null && constructorParameters.Any())
-                {
-                    bool isInheritedInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
-                                                                               .Contains(value: interfaceOfInherit);
-                    if (isInheritedInterface)
-                    {
-                        if (createdObjectsOfInstances.ContainsKey(key: interfaceOfInherit.FullName))
-                        {
-                            return (T)createdObjectsOfInstances[interfaceOfInherit.FullName];
-                        }
-                        Lazy<T> createdSingletonInstance = new Lazy<T>(valueFactory: () =>
-                                                                       {
-                                                                           object createdInstance = Activator.CreateInstance(type: resultToReturnClass,
-                                                                                                                             args: constructorParameters);
-                                                                           return (T)createdInstance;
-                                                                       });
-                        T resultToReturnInstance = createdSingletonInstance.Value;
-                        if (createdSingletonInstance.IsValueCreated)
-                        {
-                            createdObjectsOfInstances.TryAdd(key: interfaceOfInherit.FullName, value: resultToReturnInstance);
-                            return resultToReturnInstance;
-                        }
-                    }
-                    else
-                    {
-                        throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {interfaceOfInherit.Name} adlı INTERFACE'den miras almadığı için {interfaceOfInherit.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {interfaceOfInherit.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
-                    }
-                }
-                else
-                {
-                    throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForConstructorParameters,
-                                                    innerException: null);
-                }
+                throw new NullReferenceException(message: ConstantsOfErrors.NullReferenceExceptionForResultToReturnClassType);
             }
-            return default(T);
+
+            if (constructorParameters == null)
+            {
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForConstructorParameters,
+                                                innerException: null);
+            }
+
+            Type inheritedInterface = typeof(T);
+
+            bool isInheritedInterface = ((TypeInfo)resultToReturnClass).ImplementedInterfaces
+                                                                      .Contains(value: inheritedInterface);
+            if (isInheritedInterface)
+            {
+                if (createdObjectsOfInstances.ContainsKey(key: inheritedInterface.FullName))
+                {
+                    object outParameterForImplementedClass = null;
+                    var isThereAnyFecth = createdObjectsOfInstances.TryGetValue(key: inheritedInterface.FullName, value: out outParameterForImplementedClass);
+                    if (isThereAnyFecth)
+                    {
+                        return (T)outParameterForImplementedClass;
+                    }
+                    throw new InvalidCastException(message: ConstantsOfErrors.InvalidCastExceptionForFetchInheritedClass);
+                }
+                if (constructorParameters.Any())
+                {
+                    Lazy<T> createSingletonInstance = new Lazy<T>(valueFactory: () =>
+                    {
+                        return (T)Activator.CreateInstance(type: resultToReturnClass,
+                                                           args: constructorParameters);
+                    });
+                    T resultToReturnOfCreatedSingletonInstance = createSingletonInstance.Value;
+                    if (createSingletonInstance.IsValueCreated)
+                    {
+                        createdObjectsOfInstances.TryAdd(key: inheritedInterface.FullName,
+                                                         value: resultToReturnOfCreatedSingletonInstance);
+                        return resultToReturnOfCreatedSingletonInstance;
+                    }
+                    throw new Exception(message: ConstantsOfErrors.ExceptionMessageForCreateInstance);
+                }
+                throw new ArgumentNullException(message: ConstantsOfErrors.ArgumentNullExceptionMessageForConstructorParameters,
+                                                innerException: null);
+            }
+            throw new NotImplementedException(message: $"{resultToReturnClass.Name} adlı CLASS {inheritedInterface.Name} adlı INTERFACE'den miras almadığı için {inheritedInterface.Name} adlı INTERFACE için bir nesne üretilemiyor. Lütfen {inheritedInterface.Name}'den miras alan bir CLASS tanımlayınız ve 'resultToReturnClass' adlı parametreye bu CLASS değerini verin!");
         }
+
 
         //ToDo : IDisposable icin calisilip burasi ve tum projede ki IDisposable implementationlari duzeltilecek
         #region IDisposable Support
