@@ -174,7 +174,7 @@ namespace DataAccess.DataAccessOfToDoList.Concretes.UnitOfWork
             {
                 if (disposing)
                 {
-                    UtilityTools.CreateUtilityInstance.Dispose();
+                    UtilityTools.Dispose();
                     if (this.DbContextTransaction != null)
                     {
                         this.DbContextTransaction.Dispose();

@@ -1,6 +1,7 @@
 ﻿#region Added Project Referances and Global Usings
 using System;
 using System.Linq;
+using System.Threading;
 using System.Reflection;
 using System.Collections.Concurrent;
 using Commons.CommonOfToDoList.Constants;
@@ -11,27 +12,29 @@ namespace Helpers.HelperOfToDoList.Tools
     /// <summary>
     /// Proje icerisinde herhangi bir yerde kullanilacak yardimci fonksiyonlari iceren class
     /// </summary>
-    public class UtilityTools : IDisposable
+    public class UtilityTools
     {
-        #region Global Properties 
-        private bool disposedValue;
-        private static readonly ConcurrentDictionary<string, object> createdObjectsOfInstances;
-        #endregion Global Properties
+        #region Global Private Properties 
 
-        #region Constructor(s)
-        private UtilityTools()
-        {
-            this.disposedValue = default(bool);
-        }
+        #endregion Global Private Properties
+
+        #region Global Private Readonly Static Properties
+        private static ConcurrentDictionary<string, object> createdObjectsOfInstances;
+        #endregion Global Private Readonly Static Properties
+
+        #region Constructors
+
+        private UtilityTools() { }
 
         static UtilityTools()
         {
             createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
         }
-        #endregion Constructor(s)
+        #endregion Constructors
+
+        #region Public Static Functions
 
         public static UtilityTools CreateUtilityInstance => new UtilityTools();
-
 
         /// <summary>
         /// Kendisine verilen Interface ve Class degerlerine gore Singleton olarak bir Constructor'a herhangi bir deger 
@@ -140,25 +143,30 @@ namespace Helpers.HelperOfToDoList.Tools
         }
 
 
-        //ToDo : IDisposable icin calisilip burasi ve tum projede ki IDisposable implementationlari duzeltilecek
-        #region IDisposable Support
-        protected virtual void Dispose(bool disposing)
+        #endregion Public Static Functions
+
+        #region Disposable Function
+
+        public static void Dispose()
         {
-            if (!disposedValue)
+            var cleanedInstances = Interlocked.Exchange(ref createdObjectsOfInstances, null);
+            createdObjectsOfInstances = new ConcurrentDictionary<string, object>();
+            if ((cleanedInstances != null) && (cleanedInstances.Any()))
             {
-                if (disposing)
+                var instanceList = cleanedInstances.Values.ToArray();
+                foreach (var theInstance in instanceList)
                 {
-                    createdObjectsOfInstances.Clear();
+                    bool inheritedFromIDisposable = ((TypeInfo)theInstance.GetType()).ImplementedInterfaces
+                                                                           .Contains(value: typeof(IDisposable));
+                    if (inheritedFromIDisposable)
+                    {
+                        ((IDisposable)theInstance).Dispose();
+                    }
                 }
-                disposedValue = true;
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-        #endregion
+        #endregion Disposable Function
 
     }
 }

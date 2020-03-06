@@ -82,7 +82,7 @@ namespace Managers.ManagerOfToDoList.Base
                 if (disposing)
                 {
                     this.UnitOfWork.Dispose();
-                    UtilityTools.CreateUtilityInstance.Dispose();
+                    UtilityTools.Dispose();
                 }
                 disposedValue = true;
             }
